@@ -1,8 +1,10 @@
+require("dotenv").config();
 const express = require("express");
 const axios = require("axios");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+const API_KEY = process.env.API_KEY;
 
 // Route handler for handling API requests with user input
 app.get("/", async (req, res) => {
@@ -13,8 +15,7 @@ app.get("/", async (req, res) => {
       url: "https://api.themoviedb.org/3/search/multi",
       headers: {
         accept: "application/json",
-        Authorization:
-          "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4OTgzOTAwNmFhMjc3MDBkYWViODFiM2Y0YTgzNDdhMyIsInN1YiI6IjYxNzdlMDQyZTlkYTY5MDA0MzQ2MTZlMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.wp_7YF3VDfg0Kc9bFrsF4oKSm7Ks0AME-PVeq2SB5GM",
+        Authorization: `Bearer ${API_KEY}`,
       },
       params: {
         query: query,
